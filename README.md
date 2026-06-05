@@ -73,3 +73,34 @@ Model weights and demo/example assets are **not** committed to this repo — onl
 architecture (code + integration). Download the base-model weights from the upstream project,
 [Tencent-Hunyuan/Hunyuan3D-2.1](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1), per its instructions, and point the loader at them (see the code / upstream README). This
 keeps the repository lightweight and avoids redistributing third-party weights.
+
+## Citation
+
+If you use this repository, please cite the base model and the acceleration method(s):
+
+```bibtex
+@misc{hunyuan3d2025hunyuan3d,
+    title={Hunyuan3D 2.1: From Images to High-Fidelity 3D Assets with Production-Ready PBR Material},
+    author={Tencent Hunyuan3D Team},
+    year={2025},
+    eprint={2506.15442},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+
+@misc{hunyuan3d22025tencent,
+    title={Hunyuan3D 2.0: Scaling Diffusion Models for High Resolution Textured 3D Assets Generation},
+    author={Tencent Hunyuan3D Team},
+    year={2025},
+    eprint={2501.12202},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+```
+
+```bibtex
+@misc{hicache2025,
+  title  = {HiCache: Training-free Acceleration of Diffusion Models via Hermite Polynomial Feature Forecasting},
+  eprint = {2508.16984}, archivePrefix = {arXiv}, primaryClass = {cs.CV}, year = {2025}
+}
+```
