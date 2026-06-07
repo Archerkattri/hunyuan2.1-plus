@@ -1,5 +1,7 @@
 <div align="center">
 
+<p align="center"><img src="assets/banner.png" alt="hunyuan2.1-plus" width="680"></p>
+
 # Hunyuan3D-2.1 + HiCache
 
 **Tencent's Hunyuan3D-2.1 image/text-to-3D, accelerated by the HiCache Hermite velocity cache on its DiT flow-matching loop.**
@@ -86,7 +88,7 @@ For the full cross-model benchmarks (controlled forecast microbenchmark, Hunyuan
 
 ## Attribution
 
-- **Base model:** [Hunyuan3D-2.1](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1) © Tencent — see [`PROJECT.md`](PROJECT.md) and the upstream license. All Hunyuan3D-2.1 code, weights, and trademarks belong to Tencent.
+- **Base model:** [Hunyuan3D-2.1](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1) © Tencent — see [`PROJECT.md`](PROJECT.md) and [`LICENSE`](LICENSE) (Tencent Hunyuan 3D 2.1 Community License Agreement; note its territorial limits, large-user threshold, and no-competing-model-training restrictions). All Hunyuan3D-2.1 code, weights, and trademarks belong to Tencent.
 - **HiCache:** *HiCache: Training-free Acceleration of Diffusion Models via Hermite Polynomial Feature Forecasting* (arXiv:[2508.16984](https://arxiv.org/abs/2508.16984)). The Hermite forecaster here is a clean reimplementation; only the loop wiring is Hunyuan-specific.
 - **TaylorSeer** — the monomial (Taylor) feature cache that HiCache's Hermite basis generalises.
 
