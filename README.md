@@ -28,7 +28,7 @@ base generator, and the `+` / `++` suffix is a **method choice**, not a rival pr
 | Hunyuan3D-2 mini | `hunyuan2-plus` | `hunyuan2-plus-plus` |
 | SAM 3D Objects | `sam3d-plus` | `sam3d-plus-plus` |
 | Fast-SAM3D | `fastsam3d-plus` | `fastsam3d-plus-plus` |
-| DiT-XL/2 (ImageNet) | `dit-plus` | `dit-plus-plus` |
+| DiT-XL/2 (ImageNet) | `dit-plus` *(unreleased)* | `dit-plus-plus` *(unreleased)* |
 | TRELLIS (v1) | `faster-trellis` | `faster-trellis-plus-plus` |
 | TRELLIS.2-4B (v2) | `hermit-trellis2` | `hermit-trellis2-plus-plus` |
 
@@ -57,7 +57,7 @@ F̂_{t−k} = F_t + Σ_{i≥1} (Δ^i F_t / i!) · H̃_i(−k)
 
 with the **dual-scaled physicist's Hermite** polynomial `H̃_n(x) = σ^n H_n(σ x)`, `σ ∈ (0,1)`. The `σ` contraction keeps the high-order terms bounded, giving a more stable extrapolation than the equivalent Taylor (monomial) series — TaylorSeer is exactly the special case where `H̃_i(−k)` is the monomial `(−k)^i`. With fewer than two anchors the forecast degenerates to plain reuse of the cached velocity (the correct zero-information forecast).
 
-The Hermite basis is a **polynomial**, so it is the right call only at a **modest skip**: it is lossless at low intervals and degrades as the skip grows, because a polynomial diverges under extrapolation. The diffusion feature trajectory actually lives on a sum-of-exponentials (the solution of a near-linear feature-ODE), which a polynomial can only locally truncate. The sibling fork **[`hunyuan2.1-plus-plus`](../hunyuan2.1-plus-plus)** swaps in the *exponential* (DMD/Prony) forecaster that is exact on that class and holds quality at larger skip intervals.
+The Hermite basis is a **polynomial**, so it is the right call only at a **modest skip**: it is lossless at low intervals and degrades as the skip grows, because a polynomial diverges under extrapolation. The diffusion feature trajectory actually lives on a sum-of-exponentials (the solution of a near-linear feature-ODE), which a polynomial can only locally truncate. The sibling fork **[`hunyuan2.1-plus-plus`](https://github.com/Archerkattri/hunyuan2.1-plus-plus)** swaps in the *exponential* (DMD/Prony) forecaster that is exact on that class and holds quality at larger skip intervals.
 
 ## How to enable it
 
@@ -83,9 +83,9 @@ pipe.disable_hicache()   # back to the dense sampler
 
 ## Results
 
-On Hunyuan3D-2.1 (Toys4K, F-score@0.05, 3-seed), the Hermite polynomial cache is the **baseline** point of comparison: lossless only at low skip (≈ 0.88 at interval-3, ~1.7× faster) and dropping as the interval grows (≈ 0.74 at interval-5 vs an uncached ≈ 0.89). The *exponential* method that holds quality much further out — ≈ 0.83 at interval-5 — lives in the sibling fork **[`hunyuan2.1-plus-plus`](../hunyuan2.1-plus-plus)**.
+On Hunyuan3D-2.1 (Toys4K, F-score@0.05, 3-seed), the Hermite polynomial cache is the **baseline** point of comparison: lossless only at low skip (≈ 0.88 at interval-3, ~1.7× faster) and dropping as the interval grows (≈ 0.74 at interval-5 vs an uncached ≈ 0.91). The *exponential* method that holds quality much further out — ≈ 0.86 at interval-5 — lives in the sibling fork **[`hunyuan2.1-plus-plus`](https://github.com/Archerkattri/hunyuan2.1-plus-plus)**.
 
-For the full cross-model benchmarks (controlled forecast microbenchmark, Hunyuan3D-2.1, Hunyuan3D-2-mini, SAM3D, Fast-SAM3D) and the Hermite-vs-exponential tables, see the standalone library **[`hicache-plus-plus`](../hicache-plus-plus)**.
+For the full cross-model benchmarks (controlled forecast microbenchmark, Hunyuan3D-2.1, Hunyuan3D-2-mini, SAM3D, Fast-SAM3D) and the Hermite-vs-exponential tables, see the standalone library **[`hicache-plus-plus`](https://github.com/Archerkattri/hicache-plus-plus)**.
 
 ## Attribution
 
@@ -130,3 +130,12 @@ If you use this repository, please cite the base model and the acceleration meth
   eprint = {2508.16984}, archivePrefix = {arXiv}, primaryClass = {cs.CV}, year = {2025}
 }
 ```
+
+---
+
+## Family
+
+Part of the **HiCache++ acceleration family**.
+
+- **Family hub:** [`hicache-plus-plus`](https://github.com/Archerkattri/hicache-plus-plus) — the basis library behind this adapter.
+- **Sibling:** [`hunyuan2.1-plus-plus`](https://github.com/Archerkattri/hunyuan2.1-plus-plus) — the same base model with the HiCache++ (Dynamic Mode Decomposition / Prony) exponential-forecast variant.
