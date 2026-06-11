@@ -86,6 +86,20 @@ On Hunyuan3D-2.1 (Toys4K, F-score@0.05, 3-seed), the Hermite polynomial cache is
 
 For the full cross-model benchmarks (controlled forecast microbenchmark, Hunyuan3D-2.1, Hunyuan3D-2-mini, SAM3D, Fast-SAM3D) and the Hermite-vs-exponential tables, see the standalone library **[`hicache-plus-plus`](https://github.com/Archerkattri/hicache-plus-plus)**.
 
+
+### Sign-convention update (2026-06-10)
+
+The vendored Hermite forecast evaluated the basis at `x = -k`; the corrected convention from
+[hicache-plus-plus 1.2.0](https://github.com/Archerkattri/hicache-plus-plus) is `x = +k` (the
+upstream TaylorSeer distance convention; `-k` flips every odd-order term, extrapolating
+backwards). This fork now ships the corrected forecast. The published numbers above were
+measured with the as-released code and remain valid as-measured; re-validation on this model
+is pending. On the two family models re-validated so far on their published protocols
+(Hunyuan3D-2 mini and the SAM 3D Objects slat stage; see
+[`hunyuan2-plus`](https://github.com/Archerkattri/hunyuan2-plus) and
+[`sam3d-plus`](https://github.com/Archerkattri/sam3d-plus)), the corrected forecast matched
+the as-released quality at the published intervals.
+
 ## Attribution
 
 - **Base model:** [Hunyuan3D-2.1](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1) © Tencent — see [`PROJECT.md`](PROJECT.md) and [`LICENSE`](LICENSE) (Tencent Hunyuan 3D 2.1 Community License Agreement; note its territorial limits, large-user threshold, and no-competing-model-training restrictions). All Hunyuan3D-2.1 code, weights, and trademarks belong to Tencent.
