@@ -4,6 +4,12 @@
 
 # Hunyuan3D-2.1 + HiCache
 
+<p>
+  <a href="https://github.com/Archerkattri/hunyuan2.1-plus/releases"><img alt="Release" src="https://img.shields.io/github/v/release/Archerkattri/hunyuan2.1-plus?color=1f6feb"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/Archerkattri/hunyuan2.1-plus?color=0d9488"></a>
+</p>
+
+
 **Tencent's Hunyuan3D-2.1 image/text-to-3D, accelerated by the HiCache Hermite velocity cache on its DiT flow-matching loop.**
 
 *A clean, first-class integration of [HiCache](https://arxiv.org/abs/2508.16984) — training-free diffusion acceleration that forecasts the cached velocity with a scaled-Hermite **polynomial** basis instead of running the DiT on skipped denoise steps.*
