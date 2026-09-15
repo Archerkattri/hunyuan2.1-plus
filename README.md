@@ -87,9 +87,18 @@ pipe.disable_hicache()   # back to the dense sampler
 
 `enable_hicache` just records the schedule on the pipeline; the denoise loop in `hy3dshape/hy3dshape/pipelines.py` consumes it via `hicache_init / hicache_decide / hicache_update_derivatives / hicache_forecast` from [`hy3dshape/hy3dshape/hicache.py`](hy3dshape/hy3dshape/hicache.py). The Hermite core is CPU-testable with no GPU or model: `python -m hy3dshape.hy3dshape.hicache`.
 
-## Results
+## Historical results (not current validation)
 
-On Hunyuan3D-2.1 (Toys4K, F-score@0.05, 3-seed), the Hermite polynomial cache is the **baseline** point of comparison: lossless only at low skip (≈ 0.88 at interval-3, ~1.7× faster) and dropping as the interval grows (≈ 0.74 at interval-5 vs an uncached ≈ 0.91). The *exponential* method that holds quality much further out — ≈ 0.86 at interval-5 — lives in the sibling fork **[`hunyuan2.1-plus-plus`](https://github.com/Archerkattri/hunyuan2.1-plus-plus)**.
+No current-commit model or GPU A/B was run in this bounded packet. The figures below
+are historical, checkpoint- and protocol-specific evidence for the Hermite reference
+arm. The current acceptance fields are recorded in
+[`benchmarks/hunyuan2.1-plus.json`](benchmarks/hunyuan2.1-plus.json); unmeasured values
+are not promoted to current validation.
+
+On Hunyuan3D-2.1 (Toys4K, F-score@0.05, 3-seed), the historical Hermite polynomial
+cache is the **baseline** point of comparison: lossless only at low skip (≈ 0.88 at
+interval-3, ~1.7× faster) and dropping as the interval grows (≈ 0.74 at interval-5
+vs an uncached ≈ 0.91). These cells are not defaults for other checkpoints.
 
 For the full cross-model benchmarks (controlled forecast microbenchmark, Hunyuan3D-2.1, Hunyuan3D-2-mini, SAM3D, Fast-SAM3D) and the Hermite-vs-exponential tables, see the standalone library **[`hicache-plus-plus`](https://github.com/Archerkattri/hicache-plus-plus)**.
 
@@ -159,3 +168,9 @@ Part of the **HiCache++ acceleration family**.
 
 - **Family hub:** [`hicache-plus-plus`](https://github.com/Archerkattri/hicache-plus-plus) — the basis library behind this adapter.
 - **Sibling:** [`hunyuan2.1-plus-plus`](https://github.com/Archerkattri/hunyuan2.1-plus-plus) — the same base model with the HiCache++ (Dynamic Mode Decomposition / Prony) exponential-forecast variant.
+
+## Current release status
+
+The current adapter includes shared HiCache++ cache identity, timing and
+fallback accounting. Four CPU contract tests pass. Real Hunyuan2.1 model/CUDA
+execution and mesh-quality comparisons remain unmeasured.
