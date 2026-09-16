@@ -23,12 +23,13 @@
 
 </div>
 
+## Shape-sampler integration
+
+![Hunyuan3D-2.1 HiCache integration](assets/readme_flow.svg)
+
+Shape generation uses the Hermite cache at the DiT boundary. Texture generation remains downstream and receives the same mesh contract as the unaccelerated pipeline.
+
 ## When to use this repo
-## Architecture at a glance
-
-![hunyuan2.1-plus architecture](assets/readme_flow.svg)
-
-HiCache attaches to the Hunyuan3D-2.1 flow loop and forecasts skipped DiT velocities with the scaled-Hermite backend.
 
 These repos are **complementary accelerators, not competing solutions** — each speeds up a *different*
 base generator, and the `+` / `++` suffix is a **method choice**, not a rival product. Pick by
